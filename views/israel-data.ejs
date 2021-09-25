@@ -1,0 +1,39 @@
+<html lang="en">
+<%- include('./partials/head.ejs')%>
+<body>
+    <div id="wrapperIsrael">
+        <%- include('./partials/header.ejs')%>
+
+        <!-- <div id="choose-cont">
+            <div id="city-box" class="israel-choose button" onclick="showInput()">מידע לפי ישוב</div>
+            <div id="general-box" class="israel-choose button" onclick="showGeneralData()">מידע כללי</div>
+        </div> -->
+
+        <form method="POST" action="/israel-data" id="cityType">
+            <label for="input" >שם הישוב &nbsp</label>
+            <input id="input" class="input" type="text" name="city" placeholder="הקלד...">
+            <button id="searchCity">חפש</button>
+        </form>
+
+        <content id="cont">
+            <h2>נתוני קורונה מעודכנים</h2>
+            <% if (cityData != undefined) { %>
+
+                <div id="output-data">
+                    <h3 class="data-cont il-data">שם הישוב: <span><%= cityData.City %></span></h3>
+                    <h3 class="data-cont il-data">חולים מאומתים: <span><%= cityData.Confirmed %></span></h3>
+                    <h3 class="data-cont il-data">חולים פעילים: <span><%= cityData.Active %></span></h3>
+                    <h3 class="data-cont il-data">חולים משבעת הימים האחרונים: <span><%= cityData.Verifies_7_days_ago %></span></h3>
+                </div>
+
+            <% } else { %>
+
+                <p>There are not enough data...</p>
+
+            <% } %>
+            
+        </content>
+    </div>
+    <script src="js/script-israel.js"></script>
+</body>
+</html>
