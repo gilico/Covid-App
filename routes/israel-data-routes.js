@@ -5,7 +5,7 @@ const router = express.Router();
 
 // israel city page
 router.get('/', (req, res) => {
-    const cityData = {};
+    const cityData = undefined;
     res.render('israel-data', {title: 'מידע ישראל', cityData});
 });
 
@@ -14,7 +14,7 @@ router.post('/', async(req, res) => {
     try {
         const userCity = req.body.city;
         const cityData = await processIsreal.processCity(userCity);
-        
+
         res.render('israel-data', {title: 'מידע ערים', cityData});
 
     } catch (error) {
