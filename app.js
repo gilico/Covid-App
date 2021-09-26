@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const processIsreal = require("./modules/processIsrael");
 const worldDataRoutes = require('./routes/worldWide-routes');
 const israelDataRoutes = require('./routes/israel-data-routes');
-const processIsreal = require("./modules/processIsrael");
+const generalIsraelRoutes = require('./routes/genral-israel-routes');
 const { urlencoded } = require('body-parser');
 
 
@@ -33,19 +34,9 @@ app.use('/israel-data', israelDataRoutes);
 // express routes - data by countries 
 app.use('/worldWide-data', worldDataRoutes);
 
+// express routes - israel general data 
+app.use('/general-israel', generalIsraelRoutes);
 
-// israel general data page
-app.get('/general-israel', async(req, res) => {
-    try 
-    {
-        const data = await processIsreal.processGeneral();
-        res.render('general-israel', {title: 'מידע כללי', data});    
-    } 
-    catch (error) 
-    {
-        console.log(error);
-    }
-});
 
 
 // 404 page - must be last of the pages
