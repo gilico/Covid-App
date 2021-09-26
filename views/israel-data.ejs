@@ -11,13 +11,14 @@
 
         <form method="POST" action="/israel-data" id="cityType">
             <label for="input" >שם הישוב &nbsp</label>
-            <input id="input" class="input" type="text" name="city" placeholder="הקלד...">
+            <input id="input" class="input" type="text" name="city" placeholder="הקלד..." autofocus>
             <button id="searchCity">חפש</button>
         </form>
 
         <content id="cont">
-            <h2>נתוני קורונה מעודכנים</h2>
-            <% if (cityData != undefined) { %>
+            
+            <% if (cityData != undefined ) { %>
+                <h2>נתוני קורונה מעודכנים</h2>
 
                 <div id="output-data">
                     <h3 class="data-cont il-data">שם הישוב: <span><%= cityData.City %></span></h3>
@@ -26,10 +27,10 @@
                     <h3 class="data-cont il-data">חולים משבעת הימים האחרונים: <span><%= cityData.Verifies_7_days_ago %></span></h3>
                 </div>
 
-            <% } else { %>
+            <% } else if(cityData === null) { %>
 
-                <p>There are not enough data...</p>
-
+                <p>אין מספיק נתונים לישוב זה</p>
+                
             <% } %>
             
         </content>

@@ -1,0 +1,36 @@
+<html lang="en">
+<%- include('./partials/head.ejs')%>
+<body>
+    <div id="wrapper-world">
+        <%- include('./partials/header.ejs')%>
+        <form method="POST" action="/worldWide-data" id="cityType">
+            <label for="input" >הכנס המדינה &nbsp</label>
+            <input id="input" class="input" type="text" name="country" placeholder="הקלד..." autofocus>
+            <button id="searchCity">חפש</button>
+        </form>
+
+        <content id="cont">
+            <% if (output != undefined) { %>
+                <h2>נתוני קורונה לפי מדינת: <span><%= output.name %></h2>
+
+                <div id="output-data">
+                    <h3 class="data-cont world-data">אוכלוסייה: <span><%= output.population %></span></h3>
+                    <h3 class="data-cont world-data">מעודכן לתאריך: <span><%= output.update_at %></span></h3>
+                    <h3 class="data-cont world-data">סה"כ שאומתו: <span><%= output.total_confirmed %></span></h3>
+                    <h3 class="data-cont world-data">מאומתים חדשים: <span><%= output.new_confirmed %></span></h3>
+                    <h3 class="data-cont world-data">חולים פעילים: <span><%= output.active %></span></h3>
+                    <h3 class="data-cont world-data">סה"כ מתים: <span><%= output.deaths %></span></h3>
+                    <h3 class="data-cont world-data">מתים שהתווספו היום: <span><%= output.new_deaths %></span></h3>
+                </div>
+
+            <% } else if(output === null) { %>
+
+                <p>אין מספיק נתונים, הכנס/י שם מדוייק</p>
+
+            <% } %>
+            
+        </content>
+
+    </div>
+</body>
+</html>

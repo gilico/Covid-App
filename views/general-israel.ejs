@@ -3,25 +3,32 @@
 <body>
     <div id="wrapper">
         <%- include('./partials/header.ejs')%>
-        <content id="cont"> 
-            <h2 id="title">נתוני קורונה בישראל</h2>
 
-             <% if (data != undefined) { %>
+        <form method="POST" action="/general-israel" id="general-form">
+            <label for="input" >בחר תאריך &nbsp</label>
+            <input id="input" class="input" type="date" name="date">
+            <button id="searchCity">חפש</button>
+        </form>
+
+        <content id="cont"> 
+            
+            <% if (data != undefined) { %>
+                <h2 id="title">נתוני קורונה בישראל לפי תאריך: <span><%= data.Last_Update %></span></h2>
                 
-                <h3 class="data-cont general-data">תאריך עדכון אחרון: <span><%= data.Last_Update %></span></h3>
-                <h3 class="data-cont general-data">כמות החולים בישראל: <span><%= data.Sum_of_Sick %></span></h3>
-                <h3 class="data-cont general-data">מאומתים חדשים מהיום: <span><%= data.New_Confirmed_today %></span></h3>
-                <h3 class="data-cont general-data">מאומתים חדשים מאתמול: <span><%= data.New_Confirmed_yesterday %></span></h3>
+                <h3 class="data-cont general-data">סה"כ החולים בישראל: <span><%= data.Sum_of_Sick %></span></h3>
+                <h3 class="data-cont general-data">סה"כ שאומתו באותו היום: <span><%= data.New_Confirmed_today %></span></h3>
+                <h3 class="data-cont general-data">סה"כ שאומתו ביום שלפני: <span><%= data.New_Confirmed_yesterday %></span></h3>
                 <h3 class="data-cont general-data">מחוסנים מנה ראשונה: <span><%= data.Sum_Of_First_Dose %></span></h3>
                 <h3 class="data-cont general-data">מחוסנים מנה שנייה: <span><%= data.Sum_Of_Second_Dose %></span></h3>
                 <h3 class="data-cont general-data">מחוסנים מנה שלישית: <span><%= data.Sum_Of_Third_Dose %></span></h3>
                 <h3 class="data-cont general-data">אחוז מחוסנים מהאוכלוסייה: <span><%= data.Vaccined_Percentage_Of_Population %></span></h3>
                 
-                <% } else { %>
-                    
-                    <h3>ישנה תקלה</h3>
-                    
-                <% } %>
+            <% } else if(data === null) { %>
+                
+                <h3>אין מספיק נתונים לתאריך זה</h3>
+                <h4>אני בחר/י תאריך אחר</h4>
+                
+            <% } %>
                     
             </content>  
         </div>
