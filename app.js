@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const processIsreal = require("./modules/processIsrael");
 const worldDataRoutes = require('./routes/worldWide-routes');
 const israelDataRoutes = require('./routes/israel-data-routes');
 const generalIsraelRoutes = require('./routes/genral-israel-routes');
