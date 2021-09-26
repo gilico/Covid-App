@@ -1,16 +1,11 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const processIsreal = require("./modules/processIsrael");
 const worldDataRoutes = require('./routes/worldWide-routes');
 const israelDataRoutes = require('./routes/israel-data-routes');
 const generalIsraelRoutes = require('./routes/genral-israel-routes');
-const { urlencoded } = require('body-parser');
-
-
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const app = express();
 app.listen(3000);
-
 
 // register views engine
 app.set('view engine', 'ejs');
