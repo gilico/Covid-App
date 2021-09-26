@@ -10,7 +10,7 @@ const data = JSON.parse(fs.readFileSync("./data/ISO3166-1.json").toString());
 //translate from hebrew with google translate npm
 async function translateCountry(country){
     try {
-        return translate(country, {from: 'iw', to: 'en'})
+        return translate(country, { to: 'en'})
     } catch (error) {
         console.error(err)
     }
@@ -26,13 +26,20 @@ function processLocation(country){
             return data[i].alpha2Code; 
         }
     }
+    return null;
     // if the user input invalid name - nothing returns.
 }
 
 // Async function that calls 'gotWrapper' with the country code' only after the user confitmed it.
 async function callCoronaWWApi(country){
     const trans = await translateCountry(country)
-    const stateCode = await processLocation(trans.toLowerCase());
+    const setFinal = setCommonCountryNames(trans)
+    
+    const stateCode = await processLocation(setFinal.toLowerCase());
+
+    if (stateCode === null) {
+        return null
+    }
 
     // Combining the two parts of the api url.
     const ApiPath = "https://corona-api.com/countries/"; 
@@ -76,6 +83,23 @@ function covidDataJson(data){
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+function setCommonCountryNames(country){
+
+    switch (country) {
+        case "England":
+        case "UK":
+            return "United Kingdom of Great Britain"
+        
+        case "United States":
+            return "United States Of America"
+
+        default:
+            return country;
+    }
+
+}
+
 
 // // Export these tow function - for country code and to process the data
 module.exports = {
