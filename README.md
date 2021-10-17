@@ -1,5 +1,5 @@
 # Covid-App
 
-Link to YouTube demo of the app
+Link to the app at Heroku
 
-https://youtu.be/eBfLCoEZKsw
+https://covid-19-app-node.herokuapp.com/
